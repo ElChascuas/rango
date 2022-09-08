@@ -46,6 +46,8 @@ def search_products(request):
 
 
 class DetailProduct(DetailView):
+
+    
     model = Product
     template_name = 'products/detail_product.html'
 

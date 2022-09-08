@@ -15,7 +15,7 @@ def login_request(request):
             user = authenticate(username=username, password=password)
             if user is not None:
                 login(request, user)
-                context = {"message":f"¿Listo para tu proxima campaña? {username}"}
+                context = {"message":f"¿Listo para tu proxima aventura? {username}"}
                 return render(request, "index.html", context=context)
 
         form = AuthenticationForm()
@@ -41,4 +41,3 @@ def register(request):
     elif request.method == "GET":
         form = UserRegistrationForm()
         return render(request, "users/register.html", {"form": form})
-

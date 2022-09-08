@@ -41,21 +41,23 @@
           <a class="dropdown-item active" href="/blog/create_article/">Nuevo Articulo</a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link" href="/admin/" style="margin-right: 5rem ;">The Stick of = True  <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="/admin/" style="margin-right: 7rem ;">The Stick of = True  <span class="sr-only">(current)</span></a>
       </li>
-              <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
-          Otros
-        </a>
-        <div class="dropdown-menu">
-          {% if request.user.is_authenticated %}
-          <a class="dropdown-item active" href="/users/logout/">Salida</a>
-          {% else %}
-          <a class="dropdown-item active" href="/users/register/">Registro</a>
-          <a class="dropdown-item active" href="/users/login/">Acceso</a>
-          {% endif %}
-          <a class="dropdown-item active" href="/about-us/">Los Fundadores</a>
+        {% if request.user.is_authenticated %}
+      <li class="nav-item active">
+        <a class="nav-link" href="/users/logout/" style="margin-left: 10rem ;"> Salida  <span class="sr-only">(current)</span></a>
       </li>
+      {% else %}
+      <li class="nav-item active">
+        <a class="nav-link" href="/users/register/"> Registrate  <span class="sr-only">(current)</span></a>
+      </li>
+    <li class="nav-item active">
+      <a class="nav-link" href="/users/login/"> Accede al Gremio <span class="sr-only">(current)</span></a>
+    </li>
+    {% endif %}
+    <li class="nav-item active">
+      <a class="nav-link" href="/about-us/"> Los Fundadores  <span class="sr-only">(current)</span></a>
+    </li>
     </ul>
   </div>
 </nav>
@@ -64,10 +66,70 @@
  
 {% block content %}
 
-    <h1>¡Nos alegra mucho que te intereses por nosotros!</h1>
-    <h1>Deja que te contemos un poco nuestra historia...</h1>
-    <h3>sas</h3>
-    <h3>so</h3>
-    <h3>si</h3>
+<div class="card text-bg-dark">
+  <img src= "https://wallpaperset.com/w/full/6/d/8/16730.jpg" class="card-img-top" alt="...">
+  <div class="card-img-overlay">
+    
+    <center> <h5 class="card-title">¡Nos alegra mucho que te intereses por nosotros!</h5> </center>
+    <center> <h5 class="card-title"> </h5> </center>
+    <center> <h6 class="card-title">Fundar este gremio de aventureros no fue facil... dejanos contarte como fue.</h6> </center>
+      <style>
+             
+       h5 {
+        font-size: 3.5rem;
+        text-transform: none;
+        color: rgb(255, 255, 255);
+        font-family: Helvetica, Georgia, monospace;
+        position: relative;
+        bottom: -20px;
+        text-shadow: 0.5px  0px 0px rgb(0, 0, 0),
+             0px  0.5px 0px rgb(0, 0, 0),
+            -0.5px  0px 0px rgb(0, 0, 0),
+             0px -0.5px 0px rgb(0, 0, 0)
+       }
+
+       h6 {
+        font-size: 2.5rem;
+        text-transform: none;
+        color: rgb(255, 255, 255);
+        font-family: Helvetica, Georgia, monospace;
+        position: relative;
+        bottom: -20px;
+        text-shadow: 0.5px  0px 0px rgb(0, 0, 0),
+             0px  0.5px 0px rgb(0, 0, 0),
+            -0.5px  0px 0px rgb(0, 0, 0),
+             0px -0.5px 0px rgb(0, 0, 0)
+       }
+
+       h5 + p {
+        font-weight: bold;
+       }
+
+       p {
+        font-size: 1.5rem;
+        color: rgb(255, 255, 255);
+        font-family: Helvetica, Arial, sans-serif;
+        position: relative;
+        bottom: -20px;
+        text-shadow: 0.5px  0px 0px rgb(0, 0, 0),
+             0px  0.5px 0px rgb(0, 0, 0),
+            -0.5px  0px 0px rgb(0, 0, 0),
+             0px -0.5px 0px rgb(0, 0, 0)
+       }
+
+      </style>
+    
+    <center><p class="card-text">Thomas Uriel Fernandez: Yo hice la estructura inicial de la pagina, las primeras views, modelos y urls de products, characters
+      y blog, tambien me encargue de todo en la aplicacion users, algunos htmls, toda la parte de media y objetos de
+       la base de datos y por ultimo corregi detalles visuales del codigo, como comentarios, guiones y renglones de mas.</p></center>
+    <p class="card-text"> </p>
+    <center><p class="card-text">Sofia Picone: Aporte con la automatización de cada uno de los caracteres por medio de formularios y cruds. Las funciones 
+      de buscador de la base de datos. Y subir ejemplos en cada uno de ellos para demostración y cargar imágenes en ellas.</p></center>
+    <p class="card-text"> </p>
+    <center><p class="card-text">Samuel David Martínez: En mi proyecto inicial me encargué de toda la estructura base como los modelos, urls y views. Luego cuando me
+      pasan a este grupo hice únicamente el testeo de la página asegurando que no hayan errores.</p></center>
+    <p class="card-text"> </p>
+  </div>
+</div>
 
 {% endblock %}

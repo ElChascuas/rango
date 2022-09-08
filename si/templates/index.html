@@ -41,21 +41,23 @@
           <a class="dropdown-item active" href="/blog/create_article/">Nuevo Articulo</a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link" href="/admin/" style="margin-right: 5rem ;">The Stick of = True  <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="/admin/" style="margin-right: 7rem ;">The Stick of = True  <span class="sr-only">(current)</span></a>
       </li>
-              <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
-          Otros
-        </a>
-        <div class="dropdown-menu">
-          {% if request.user.is_authenticated %}
-          <a class="dropdown-item active" href="/users/logout/">Salida</a>
-          {% else %}
-          <a class="dropdown-item active" href="/users/register/">Registro</a>
-          <a class="dropdown-item active" href="/users/login/">Acceso</a>
-          {% endif %}
-          <a class="dropdown-item active" href="/about-us/">Los Fundadores</a>
+        {% if request.user.is_authenticated %}
+      <li class="nav-item active">
+        <a class="nav-link" href="/users/logout/" style="margin-left: 10rem ;"> Salida  <span class="sr-only">(current)</span></a>
       </li>
+      {% else %}
+      <li class="nav-item active">
+        <a class="nav-link" href="/users/register/"> Registrate  <span class="sr-only">(current)</span></a>
+      </li>
+    <li class="nav-item active">
+      <a class="nav-link" href="/users/login/"> Accede al Gremio <span class="sr-only">(current)</span></a>
+    </li>
+    {% endif %}
+    <li class="nav-item active">
+      <a class="nav-link" href="/about-us/"> Los Fundadores  <span class="sr-only">(current)</span></a>
+    </li>
     </ul>
   </div>
 </nav>
@@ -65,7 +67,7 @@
 {% block content %}
  
   <div class="card text-bg-dark">
-    <img src= "https://cdna.artstation.com/p/assets/images/images/024/699/158/large/felix-ortiz-petrik-the-wise-in-search-of-adventure-1-b.jpg?1583251697" class="card-img-top" alt="...">
+    <img src= "https://2.bp.blogspot.com/-H0JwXMOwS7A/W1XdVPf0RjI/AAAAAAAABeE/k7IMZJ7PAFUDmeG14Cl3LYdosVfTNY9TACLcBGAs/s1600/dungeons-and-dragons-movie.jpg" class="card-img-top" alt="...">
     <div class="card-img-overlay">
       
       <center> <h5 class="card-title">Bienvenido al gremio Adventure</h5> </center>
@@ -77,7 +79,7 @@
           color: rgb(255, 255, 255);
           font-family: Helvetica, Georgia, monospace;
           position: relative;
-          bottom: -200px;
+          bottom: -100px;
           text-shadow: 0.5px  0px 0px rgb(0, 0, 0),
                0px  0.5px 0px rgb(0, 0, 0),
               -0.5px  0px 0px rgb(0, 0, 0),
@@ -93,7 +95,7 @@
           color: rgb(255, 255, 255);
           font-family: Helvetica, Arial, sans-serif;
           position: relative;
-          bottom: -400px;
+          bottom: -200px;
           text-shadow: 0.5px  0px 0px rgb(0, 0, 0),
                0px  0.5px 0px rgb(0, 0, 0),
               -0.5px  0px 0px rgb(0, 0, 0),
@@ -102,16 +104,15 @@
 
         </style>
       
-      <p class="card-text">En esta página encontraras una gran gama de productos, noticias, personajes y más, que te harán recorrer la gran era...</p>
-      <p class="card-text"></p>
+      <center><p class="card-text">Entra en la tienda magica para ver el catalogo de productos y empezar tu aventura</p></center>
+      <p class="card-text"> </p>
+      <center><p class="card-text">Dirigete a la taberna del gremio para conocer a los mejores aventureros, tal vez alguno te agrade para tu aventura</p></center>
+      <p class="card-text"> </p>
+      <center><p class="card-text">Ademas en nuestra biblioteca podras encontrar informacion util, especialmente guias para los miembros mas nuevos</p></center>
+      <p class="card-text"> </p>
+      {% if message %}
+      <center><p class="card-text">Accediste con exito, ahora... {{message}}</p></center>
+      {% endif %}
     </div>
   </div>
-
-
-  {% if message %}
-
-    <h2>{{message}}</h2>
-
-  {% endif %}
-
 {% endblock %}
