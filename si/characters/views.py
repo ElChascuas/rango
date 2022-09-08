@@ -3,6 +3,7 @@ from characters.models import Character
 from characters.forms import FormularioCharacters
 from django.views.generic import DetailView
 from django.contrib.auth.decorators import login_required, user_passes_test
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 @user_passes_test(lambda u: u.is_superuser)
@@ -31,10 +32,12 @@ def create_character(request):
 
 @login_required
 def search_characters(request):
-   search = request.GET['search']
-   characters = Character.objects.filter(name__icontains=search)
-   context={'characters':characters}
-   return render(request, 'characters/search_characters.html', context=context)
+    """Esta vista retorna una busqueda de todos los personajes de la base de datos, que cumplan 
+    con los requisitos y los muestra, ademas requiere estar logueado, sino te manda al registro"""
+    search = request.GET['search']
+    characters = Character.objects.filter(name__icontains=search)
+    context={'characters':characters}
+    return render(request, 'characters/search_characters.html', context=context)
 
 
 @login_required
@@ -46,7 +49,9 @@ def characters(request):
     return render(request, "characters/characters.html", context=context)
 
 
-class DetailCharacter(DetailView):
+class DetailCharacter(DetailView, LoginRequiredMixin):
+    """Esta clase basada en vista retorna una vista a detalle del personaje seleccionado, 
+    ademas requiere estar logueado para acceder"""
     model = Character
     template_name = 'characters/detail_character.html'
 

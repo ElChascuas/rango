@@ -3,6 +3,7 @@ from products.models import Product
 from products.forms import FormularioProducts
 from django.views.generic import DetailView
 from django.contrib.auth.decorators import login_required, user_passes_test
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 @user_passes_test(lambda u: u.is_superuser)
@@ -39,15 +40,17 @@ def list(request):
 
 @login_required
 def search_products(request):
-   search = request.GET['search']
-   products = Product.objects.filter(name__icontains=search)
-   context={'products':products}
-   return render(request, 'products/search_products.html', context=context)
+    """Esta vista retorna una busqueda de todos los productos de la base de datos, que cumplan 
+    con los requisitos y los muestra, ademas requiere estar logueado, sino te manda al registro"""
+    search = request.GET['search']
+    products = Product.objects.filter(name__icontains=search)
+    context={'products':products}
+    return render(request, 'products/search_products.html', context=context)
 
 
-class DetailProduct(DetailView):
-
-    
+class DetailProduct(DetailView, LoginRequiredMixin):
+    """Esta clase basada en vista retorna una vista a detalle del producto seleccionado, 
+    ademas requiere estar logueado para acceder"""
     model = Product
     template_name = 'products/detail_product.html'
 

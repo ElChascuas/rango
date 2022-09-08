@@ -4,6 +4,7 @@ from blog.models import Article
 from blog.forms import FormularioBlog
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.views.generic import DetailView
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 @user_passes_test(lambda u: u.is_superuser)
@@ -30,13 +31,17 @@ def create_article(request):
 
 @login_required
 def search_articles(request):
-   search = request.GET['search']
-   articles = Article.objects.filter(title__icontains=search)
-   context={'articles':articles}
-   return render(request, 'articles/search_articles.html', context=context)
+    """Esta vista retorna una busqueda de todos los articulos de la base de datos, que cumplan 
+    con los requisitos y los muestra, ademas requiere estar logueado, sino te manda al registro"""
+    search = request.GET['search']
+    articles = Article.objects.filter(title__icontains=search)
+    context={'articles':articles}
+    return render(request, 'articles/search_articles.html', context=context)
 
 
-class DetailArticle(DetailView):
+class DetailArticle(DetailView, LoginRequiredMixin):
+    """Esta clase basada en vista retorna una vista a detalle del articulo seleccionado, 
+    ademas requiere estar logueado para acceder"""
     model = Article
     template_name = 'articles/detail_article.html'
 
