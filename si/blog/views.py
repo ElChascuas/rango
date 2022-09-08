@@ -31,7 +31,7 @@ def create_article(request):
 @login_required
 def search_articles(request):
    search = request.GET['search']
-   articles = Article.objects.filter(name__icontains=search)
+   articles = Article.objects.filter(title__icontains=search)
    context={'articles':articles}
    return render(request, 'articles/search_articles.html', context=context)
 

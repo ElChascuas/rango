@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from products.models import Product
 from products.forms import FormularioProducts
+from django.views.generic import DetailView
 from django.contrib.auth.decorators import login_required, user_passes_test
 
 
@@ -42,6 +43,11 @@ def search_products(request):
    products = Product.objects.filter(name__icontains=search)
    context={'products':products}
    return render(request, 'products/search_products.html', context=context)
+
+
+class DetailProduct(DetailView):
+    model = Product
+    template_name = 'products/detail_product.html'
 
 
 @user_passes_test(lambda u: u.is_superuser)

@@ -3,6 +3,66 @@
 {% block title %}
     Borrar Articulo
 {% endblock %}
+
+{% block search %}
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="/">Salon del Gremio</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
+          Tienda Magica
+        </a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item active" href="/products/list/">Productos</a>
+          <a class="dropdown-item active" href="/products/create_product/">Nuevo producto</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
+          Taberna del Gremio
+        </a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item active" href="/characters/characters/">Tablon de Mercenarios</a>
+          <a class="dropdown-item active" href="/characters/create_character/">Nuevo aventurero</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
+          La Biblioteca
+        </a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item active" href="/blog/articles/">Guias</a>
+          <a class="dropdown-item active" href="/blog/create_article/">Nuevo Articulo</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="/admin/" style="margin-right: 5rem ;">The Stick of = True  <span class="sr-only">(current)</span></a>
+      </li>
+              <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
+          Otros
+        </a>
+        <div class="dropdown-menu">
+          {% if request.user.is_authenticated %}
+          <a class="dropdown-item active" href="/users/logout/">Salida</a>
+          {% else %}
+          <a class="dropdown-item active" href="/users/register/">Registro</a>
+          <a class="dropdown-item active" href="/users/login/">Acceso</a>
+          {% endif %}
+          <a class="dropdown-item active" href="/about-us/">Los Fundadores</a>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0" action="/blog/search_articles/" method="GET">
+      <input class="form-control mr-sm-2" type="search" placeholder="Buscar Articulos" aria-label="Search" name="search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+    </form>
+  </div>
+</nav>
+
+{% endblock %}
  
 {% block content %}
 

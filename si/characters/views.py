@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from characters.models import Character
 from characters.forms import FormularioCharacters
+from django.views.generic import DetailView
 from django.contrib.auth.decorators import login_required, user_passes_test
 
 
@@ -43,6 +44,11 @@ def characters(request):
     characters= Character.objects.all()
     context = {"characters": characters}
     return render(request, "characters/characters.html", context=context)
+
+
+class DetailCharacter(DetailView):
+    model = Character
+    template_name = 'characters/detail_character.html'
 
 
 @user_passes_test(lambda u: u.is_superuser)

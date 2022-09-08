@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block titulo %}
-    Actualizar aventurero
+    Tu producto
 {% endblock %}
 
 {% block search %}
@@ -55,29 +55,67 @@
           <a class="dropdown-item active" href="/about-us/">Los Fundadores</a>
       </li>
     </ul>
-    <form class="form-inline my-2 my-lg-0" action="/characters/search_characters/" method="GET">
-      <input class="form-control mr-sm-2" type="search" placeholder="Buscar Aventureros" aria-label="Search" name="search">
+    <form class="form-inline my-2 my-lg-0" action="/products/search_products/" method="GET">
+      <input class="form-control mr-sm-2" type="search" placeholder="Buscar Productos" aria-label="Search" name="search">
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
     </form>
   </div>
 </nav>
 
 {% endblock %}
-
+ 
 {% block content %}
+ 
+<!DOCTYPE html>
+<html>
+<head>
+  <div class="card" style="width: 18rem;">
+    <style> 
+      .grid-container {
+         display: grid;
+         width: 800px;
+         height: 800px;
+         grid-template-rows: repeat(auto-fit, 100px);
+         grid-template-columns: repeat(auto-fit, 100px);
+         grid-gap: 5px;
+      }
+      
+      .grid-item1 {
+        background: grey;
+        text-align: center;
+        border: black 5px solid;
+        width: 100px;
+        height: 100px;
+      }
 
-    <form action="" method="POST">
-    {% csrf_token %}
+      .grid-item2 {
+        background: grey;
+        text-align: center;
+        border: black 5px solid;
+      }
+    </style>
+</head>
+<body>
+  
+    {% if product.image %}
+    <img src= "{{product.image.url}}" class="card-img-top" alt="...">
+    {% else %}
+    <img src= "https://i.pinimg.com/originals/6b/d1/f8/6bd1f8d7cfb9a97235022acf1546bad8.jpg" class="card-img-top" alt="...">
+    {% endif %}
 
-    <table>
+    <div class="card-body">  
+      <h5 class="card-title">Nombre del producto: {{product.name}}</h5>
+      <p class="card-text">Categoria: {{product.category}}</p>
+      <p class="card-text">Descripción del producto: {{product.description}}</p>
+      <p class="card-text">Precio: {{product.price}}</p>
+      <p class="card-text">Stock: {{product.stock}}</p>
+      <a href="/products/products/" class="btn btn-primary">Editar</a>
+      <a href="/products/delete_product/{{product.id}}/" class="btn btn-danger">Eliminar</a>
+      <a href="/products/update_product/{{product.id}}/" class="btn btn-primary">Editar</a>
+      
+    </div>
+  </div>
 
-    {{form.as_table}}
-
-    </table>
-
-    <p><input type="submit" value="Enviar"></p>
-
-    </form>
-
+</body>
 
 {% endblock %}
