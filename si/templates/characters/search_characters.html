@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Busqueda Productos
+{% endblock %}
+ 
+{% block content %}
+ 
+
+{% for product in products %}
+<!DOCTYPE html>
+<html>
+<head>
+  <div class="card" style="width: 18rem;">
+    <style> 
+      .grid-container {
+         display: grid;
+         width: 800px;
+         height: 800px;
+         grid-template-rows: repeat(auto-fit, 100px);
+         grid-template-columns: repeat(auto-fit, 100px);
+         grid-gap: 5px;
+      }
+      
+      .grid-item1 {
+        background: grey;
+        text-align: center;
+        border: black 5px solid;
+        width: 100px;
+        height: 100px;
+      }
+
+      .grid-item2 {
+        background: grey;
+        text-align: center;
+        border: black 5px solid;
+      }
+    </style>
+</head>
+<body>
+  
+    {% if product.image %}
+    <img src= "{{product.image.url}}" class="card-img-top" alt="...">
+    {% else %}
+    <img src= "https://i.pinimg.com/originals/6b/d1/f8/6bd1f8d7cfb9a97235022acf1546bad8.jpg" class="card-img-top" alt="...">
+    {% endif %}
+
+    <div class="card-body">
+      <h5 class="card-title">{{character.name}}</h5>
+      <p class="card-text">Descripción: {{character.description}}</p>
+      <p class="card-text">Clase: {{character.clase}}</p>
+      <p class="card-text">Alineamiento: {{character.alineamiento}}</p>
+      <p class="card-text">Edad: {{character.age}}</p>
+      <p class="card-text">Nivel: {{character.lvl}}</p>
+      <a href="/characters/delete_character/{{character.id}}/" class="btn btn-danger">Eliminar</a>
+      <a href="/characters/update_character/{{character.id}}/" class="btn btn-primary">Editar</a>
+    </div>
+  </div>
+</body>
+ 
+
+  {% endfor %}
+
+</body>
+
+{% endblock %}

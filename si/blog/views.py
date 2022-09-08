@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 from blog.models import Article
 from blog.forms import FormularioBlog
 from django.contrib.auth.decorators import login_required, user_passes_test
+from django.views.generic import DetailView
 
 
 @user_passes_test(lambda u: u.is_superuser)
@@ -25,6 +26,19 @@ def create_article(request):
         form = FormularioBlog()
         context = {'form':form}
         return render(request, "articles/create_article.html", context=context)
+
+
+@login_required
+def search_articles(request):
+   search = request.GET['search']
+   articles = Article.objects.filter(name__icontains=search)
+   context={'articles':articles}
+   return render(request, 'articles/search_articles.html', context=context)
+
+
+class DetailArticle(DetailView):
+    model = Article
+    template_name = 'articles/detail_article.html'
 
 
 @login_required

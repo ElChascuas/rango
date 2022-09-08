@@ -29,6 +29,14 @@ def create_character(request):
 
 
 @login_required
+def search_characters(request):
+   search = request.GET['search']
+   characters = Character.objects.filter(name__icontains=search)
+   context={'characters':characters}
+   return render(request, 'characters/search_characters.html', context=context)
+
+
+@login_required
 def characters(request):
     """Esta vista retorna todos los personajes de la base de datos y los muestra, 
     ademas requiere estar logueado, sino te manda al registro"""

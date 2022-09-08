@@ -1,18 +1,17 @@
 {% extends "base.html" %}
 
 {% block title %}
-    Guias 
-  {% endblock %}
+    Busqueda Articulos
+{% endblock %}
  
- {% block content %}
-
+{% block content %}
+ 
 
 {% for article in articles %}
-
 <!DOCTYPE html>
 <html>
 <head>
-  <div class="card" style="width: 40rem;">
+  <div class="card" style="width: 18rem;">
     <style> 
       .grid-container {
          display: grid;
@@ -52,14 +51,13 @@
           <p class="card-text">{{article.body}}</p>
           <p class="card-text">Autor:"{{article.author}}"</p>
           <p class="card-text">creado el {{article.date}}</p>
-          <a href="/blog/detail_article/{{article.id}}/" class="btn btn-primary">Detalle</a>
           <a href="/blog/delete_article/{{article.id}}/" class="btn btn-danger">Eliminar</a>
           <a href="/blog/update_article/{{article.id}}/" class="btn btn-primary">Editar</a>
         </div>
       </div>
     </div>
 </body>
-  
+
   {% endfor %}
 
-  {% endblock %}
+{% endblock %}
